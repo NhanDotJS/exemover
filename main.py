@@ -6,7 +6,7 @@ import shutil
 
 if not os.path.isdir('exefile'):
     try:
-        os.mkdir("./exefile")
+        os.mkdir("exefile")
     except OSError as error:
         print(error)
 else:
@@ -15,17 +15,18 @@ else:
 
 class MoveFile(FileSystemEventHandler):
     def on_created(self, event):
-        for filename in os.listdir("."):
+        for filename in os.listdir():
             f_name, f_ext = os.path.splitext(filename)
             if f_ext == ".exe":
-                shutil.move(filename, "./exefile/" + filename)
+                time.sleep(5)
+                shutil.move(os.path.join(os.getcwd(), filename), os.path.join(os.getcwd(), "exefile", filename))
 
             else:
                 pass
 
 
 observer = Observer()
-observer.schedule(MoveFile(), ".", recursive=True)
+observer.schedule(MoveFile(), os.getcwd(), recursive=True)
 observer.start()
 
 try:
