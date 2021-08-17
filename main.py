@@ -4,11 +4,13 @@ import os
 import time
 import shutil
 
-if os.path.isdir('exefile'):
+if not os.path.isdir('exefile'):
     try:
         os.mkdir("./exefile")
     except OSError as error:
         print(error)
+else:
+    pass
 
 
 class MoveFile(FileSystemEventHandler):
@@ -17,6 +19,8 @@ class MoveFile(FileSystemEventHandler):
             f_name, f_ext = os.path.splitext(filename)
             if f_ext == ".exe":
                 shutil.move(filename, "./exefile/" + filename)
+            else:
+                pass
 
 
 observer = Observer()
