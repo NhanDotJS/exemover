@@ -19,6 +19,7 @@ class MoveFile(FileSystemEventHandler):
             f_name, f_ext = os.path.splitext(filename)
             if f_ext == ".exe":
                 shutil.move(filename, "./exefile/" + filename)
+
             else:
                 pass
 
